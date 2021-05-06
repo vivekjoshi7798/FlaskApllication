@@ -15,7 +15,7 @@ def Create_post():
         post = Post(title=form.Title.data, content=form.Content.data, author=current_user)
         db.session.add(post)
         db.session.commit()
-        flash('POSTED SUCESSFULLY', 'SUCESS')
+        flash('POSTED SUCCESSFULLY', 'SUCCESS')
         return redirect(url_for('mains.home'))
     return render_template('Create_Post.html', title='Update_a_post', legend='Say in Your Words', form=form)
 
@@ -36,7 +36,7 @@ def UpdatePost(post_id):
         post.title = form.Title.data
         post.content = form.Content.data
         db.session.commit()
-        flash("post Updated", 'Sucess')
+        flash("post Updated", 'Success')
         return redirect(url_for('posts.post', post_id=post.id))
     elif request.method == 'GET':
         form.Title.data = post.title

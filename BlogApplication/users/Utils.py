@@ -10,14 +10,17 @@ def save_Picture(temp_pic):
     random_hax = secrets.token_hex(8)
     abc, ext = os.path.splitext(temp_pic.filename)
     pic_name = random_hax + ext
-    picture_path = os.path.join(current_app.root_path, 'static\profile_pic', pic_name)
-
+    try:
+        picture_path = os.path.join(current_app.root_path, 'static/profile_pic', pic_name)
+    except FileNotFoundError:
+        picture_path=None
+    # print(ext,'\n',temp_pic.filename,'\n',picture_path,'\n',pic_name,'\n',current_app.root_path)
     outputsize = (125, 125)
     i = Image.open(temp_pic)
     i.thumbnail(outputsize)
     i.save(picture_path)
 
-    # print(ext,'\n',temp_pic.filename,'\n',picture_path,'\n',pic_name)
+    # print(ext,'\n',temp_pic.filename,'\n',picture_path,'\n',pic_name,'\n',current_app.root_path)
     return pic_name
 
 
