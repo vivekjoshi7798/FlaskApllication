@@ -1,4 +1,8 @@
 import os
+import json
+
+with open('/etc/config.json') as config_files:
+    config=json.load(config_files)
 
 
 class Config:
@@ -8,5 +12,5 @@ class Config:
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('EMAIL')
-    MAIL_PASSWORD = os.environ.get('PASS')
+    MAIL_USERNAME = config.get('MAIL_USERNAME')
+    MAIL_PASSWORD = config.get('MAIL_PASSWORD')
